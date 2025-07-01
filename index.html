@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PRO × ARMY (PXA)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 35px 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 255, 255, 0.15);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo img {
+      width: 110px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      border: 2px solid #00ffe0;
+      box-shadow: 0 0 12px #00ffe0;
+    }
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00fff0, #00bfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .view-channel {
+      display: inline-block;
+      margin-bottom: 25px;
+      padding: 12px 26px;
+      font-weight: 600;
+      border-radius: 10px;
+      background-color: #00ffc8;
+      color: #000;
+      box-shadow: 0 0 14px #00ffc8, 0 0 28px #00ffc8;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .view-channel:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px #00ffe0, 0 0 35px #00ffe0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    .telegram {
+      background-color: #0088cc;
+      box-shadow: 0 0 10px #00cfff, 0 0 20px #00cfff;
+      border: 2px solid #00cfff;
+      color: #fff;
+    }
+
+    .telegram:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px #00e4ff, 0 0 28px #00e4ff;
+    }
+
+    .whatsapp {
+      background-color: #25d366;
+      box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+      border: 2px solid #00ff88;
+      color: #fff;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px #00ffb3, 0 0 28px #00ffb3;
+    }
+
+    .youtube {
+      background-color: #ff0000;
+      box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
+      border: 2px solid #ff4d4d;
+      color: #fff;
+    }
+
+    .youtube:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px #ff6666, 0 0 28px #ff6666;
+    }
+
+    .flag {
+      width: 20px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 25px 20px;
+      }
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .btn, .view-channel {
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <img src="https://i.postimg.cc/Gm7LZFdb/20250702-005334.jpg" alt="PXA Logo" />
+    </div>
+    <div class="title">
+      🇵𝐑𝐎 🆇 🇦𝐑𝐌𝐘 (PXA)
+      <img src="https://i.postimg.cc/mkGY9cXF/7738b7e5a295c30d2cf8d5798a208ec7.jpg" class="flag" alt="PXA Flag" />
+    </div>
+
+    <a href="https://whatsapp.com/channel/0029VbAaGncLNSa92oMbmm2A" class="view-channel" target="_blank">View Channel</a>
+
+    <div class="buttons">
+      <a href="https://t.me/+koSxIhaaGLNhYzY0" class="btn telegram" target="_blank">Join Telegram</a>
+      <a href="https://whatsapp.com/channel/0029VbAaGncLNSa92oMbmm2A" class="btn whatsapp" target="_blank">Join WhatsApp</a>
+      <a href="https://youtube.com/@abheebhai?si=YgiPuXScna5VE2Si" class="btn youtube" target="_blank">📺 YouTube Channel</a>
+    </div>
+  </div>
+</body>
+</html>
