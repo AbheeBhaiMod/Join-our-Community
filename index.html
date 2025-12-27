@@ -1,162 +1,847 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PRO × ARMY (PXA)</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheLevel8 - Links Portal</title>
 
-    body {
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
-    }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 35px 25px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 255, 255, 0.15);
-      text-align: center;
-      width: 100%;
-      max-width: 400px;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600&display=swap');
 
-    .logo img {
-      width: 110px;
-      margin-bottom: 20px;
-      border-radius: 50%;
-      border: 2px solid #00ffe0;
-      box-shadow: 0 0 12px #00ffe0;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #00fff0, #00bfff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+:root {
+  --cyan: #00f3ff;
+  --pink: #ff00ff;
+  --green: #00ff9d;
+  --yellow: #fff000;
+  --purple: #9d00ff;
+  --blue: #0066ff;
+  --dark-bg: #000814;
+}
 
-    .view-channel {
-      display: inline-block;
-      margin-bottom: 25px;
-      padding: 12px 26px;
-      font-weight: 600;
-      border-radius: 10px;
-      background-color: #00ffc8;
-      color: #000;
-      box-shadow: 0 0 14px #00ffc8, 0 0 28px #00ffc8;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--dark-bg);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
 
-    .view-channel:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 18px #00ffe0, 0 0 35px #00ffe0;
-    }
+/* STAR RAIN BACKGROUND */
+.star-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+.star {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #fff, transparent);
+  border-radius: 1px;
+  opacity: 0;
+  animation: starFall linear infinite;
+}
 
-    .btn {
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    }
+@keyframes starFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
-    .telegram {
-      background-color: #0088cc;
-      box-shadow: 0 0 10px #00cfff, 0 0 20px #00cfff;
-      border: 2px solid #00cfff;
-      color: #fff;
-    }
+/* Star trail effect */
+.star::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+  filter: blur(2px);
+}
 
-    .telegram:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 14px #00e4ff, 0 0 28px #00e4ff;
-    }
+/* Twinkling background stars */
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 
-    .whatsapp {
-      background-color: #25d366;
-      box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
-      border: 2px solid #00ff88;
-      color: #fff;
-    }
+.bg-star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
 
-    .whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 14px #00ffb3, 0 0 28px #00ffb3;
-    }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.8; }
+}
 
-    .youtube {
-      background-color: #ff0000;
-      box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
-      border: 2px solid #ff4d4d;
-      color: #fff;
-    }
+/* Header with cosmic effect */
+.cosmic-header {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
+}
 
-    .youtube:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 14px #ff6666, 0 0 28px #ff6666;
-    }
+.galaxy-frame {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 8px;
+  background: conic-gradient(from 0deg, var(--cyan), var(--purple), var(--pink), var(--cyan));
+  animation: galaxySpin 15s linear infinite;
+  box-shadow: 
+    0 0 30px var(--cyan),
+    0 0 60px rgba(0, 243, 255, 0.3);
+}
 
-    .flag {
-      width: 20px;
-      vertical-align: middle;
-      margin-left: 6px;
-    }
+@keyframes galaxySpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-    @media (max-width: 480px) {
-      .card {
-        padding: 25px 20px;
-      }
+.galaxy-frame-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--dark-bg);
+  background: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      .title {
-        font-size: 1.5rem;
-      }
+.galaxy-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+  filter: brightness(1.1);
+}
 
-      .btn, .view-channel {
-        font-size: 14px;
-        padding: 12px;
-      }
-    }
-  </style>
+.galaxy-frame:hover img {
+  transform: scale(1.08) rotate(5deg);
+}
+
+.cosmic-title {
+  margin-top: 25px;
+  font-size: 36px;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, var(--cyan), var(--pink), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+  position: relative;
+}
+
+.cosmic-title::after {
+  content: '✨';
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.cosmic-subtitle {
+  font-size: 16px;
+  color: #a0a0c0;
+  margin-top: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* Main content */
+.cosmic-main {
+  width: 90%;
+  max-width: 520px;
+  margin: 30px auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Cosmic buttons container */
+.cosmic-buttons-container {
+  background: rgba(10, 12, 28, 0.85);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 50px rgba(0, 243, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cosmic-buttons-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+}
+
+/* Cosmic buttons - Clean without WA logo */
+.cosmic-button {
+  text-decoration: none;
+  color: #fff;
+  padding: 22px 25px;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Initial state */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cosmic-button:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Button colors with cosmic glow - NO WA LOGOS */
+.cosmic-button.main-group {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(37, 211, 102, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cosmic-button.backup-group {
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  border: 1px solid rgba(255, 65, 108, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(255, 65, 108, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cosmic-button.personal-channel {
+  background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(138, 43, 226, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cosmic-button.backup-channel {
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cosmic-button.chatting-group {
+  background: linear-gradient(135deg, #00CED1 0%, #1E90FF 100%);
+  border: 1px solid rgba(0, 206, 209, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(0, 206, 209, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* CLICK EFFECTS - NEON LIGHT EXPLOSION */
+.cosmic-button.clicked {
+  animation: neonExplosion 0.8s ease-out;
+}
+
+@keyframes neonExplosion {
+  0% {
+    transform: scale(1);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  20% {
+    transform: scale(0.97);
+    box-shadow: 
+      0 0 30px currentColor,
+      0 0 60px currentColor,
+      inset 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 
+      0 0 50px currentColor,
+      0 0 100px currentColor,
+      0 0 150px currentColor,
+      inset 0 0 30px rgba(255, 255, 255, 0.6);
+  }
+  60% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 80px currentColor,
+      0 0 160px currentColor,
+      0 0 240px currentColor,
+      inset 0 0 40px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Light rays on click */
+.light-rays {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+.ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+  transform-origin: bottom center;
+  opacity: 0;
+}
+
+/* Footer */
+.cosmic-footer {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
+}
+
+.footer-text {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.cosmic-footer span {
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Status indicator */
+.status-indicator {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--cyan);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Responsive */
+@media (max-width: 550px) {
+  .cosmic-title { font-size: 28px; }
+  .cosmic-title::after { display: none; }
+  .galaxy-frame { width: 130px; height: 130px; }
+  .cosmic-button { padding: 20px; font-size: 16px; }
+}
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <div class="logo">
-      <img src="https://i.postimg.cc/QCxbnSS4/20250811-204952.jpg" alt="PXA Logo" />
-    </div>
-    <div class="title">
-      🇵𝐑𝐎 🆇 🇦𝐑𝐌𝐘 (PXA)
-      <img src="https://i.postimg.cc/mkGY9cXF/7738b7e5a295c30d2cf8d5798a208ec7.jpg" class="flag" alt="PXA Flag" />
-    </div>
 
-    <a href="https://whatsapp.com/channel/0029VbBEJMF6BIEfr2A0w32q" class="view-channel" target="_blank">View Channel</a>
+<!-- Star rain background -->
+<div class="star-rain" id="starRain"></div>
+<div class="stars-bg" id="starsBg"></div>
 
-    <div class="buttons">
-      <a href="https://t.me/+koSxIhaaGLNhYzY0" class="btn telegram" target="_blank">Join Telegram</a>
-      <a href="https://whatsapp.com/channel/0029VbBAfis3LdQcXDcwNY1J" class="btn whatsapp" target="_blank">Join WhatsApp</a>
-      <a href="https://youtube.com/@abheebhai?si=YgiPuXScna5VE2Si" class="btn youtube" target="_blank">📺 YouTube Channel</a>
+<!-- Light rays for click effects -->
+<div class="light-rays" id="lightRays"></div>
+
+<!-- Header -->
+<header class="cosmic-header">
+  <div class="galaxy-frame">
+    <div class="galaxy-frame-inner">
+      <img src="https://files.catbox.moe/xevanw.jpg" 
+           alt="TheLeveL8">
     </div>
   </div>
+  
+  <h1 class="cosmic-title">TheLevel8</h1>
+  <p class="cosmic-subtitle">TheLevel8 WhatsApp Portal</p>
+</header>
+
+<!-- Main Content -->
+<main class="cosmic-main">
+  <div class="cosmic-buttons-container">
+    <a href="https://whatsapp.com/channel/0029VbBUzAc96H4XtERzIM0r" 
+       target="_blank" 
+       class="cosmic-button main-group"
+       data-color="#25D366"
+       data-name="Main WhatsApp Channel">
+      Main WhatsApp Channel
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029Vb6t0UEKGGGGSZPzS71s" 
+       target="_blank" 
+       class="cosmic-button backup-group"
+       data-color="#FF416C"
+       data-name="Hacking Tricks Channel">
+      Hacking Tricks Channel
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029VbACHHxGOj9kgigMaW1C" 
+       target="_blank" 
+       class="cosmic-button personal-channel"
+       data-color="#8A2BE2"
+       data-name="Personal Channel">
+      Personal Channel
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029Vb7JWGbGpLHQ9x2sKP1O" 
+       target="_blank" 
+       class="cosmic-button backup-channel"
+       data-color="#FFD700"
+       data-name="Backup Channel">
+      Backup Channel
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029Vb7FZ4lBPzjb8g1Tux3l" 
+       target="_blank" 
+       class="cosmic-button chatting-group"
+       data-color="#00CED1"
+       data-name="Chatting Channel">
+      Chatting Channel
+    </a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="cosmic-footer">
+  <div class="footer-text">© 2025 <span>Thelevel8</span> | TheLevel8 WhatsApp Network</div>
+  <div>Click buttons for Join Our Official Community✨</div>
+  
+  <!-- Status Indicator -->
+  <div class="status-indicator">
+    <div class="status-dot"></div>
+    <span>All Links Active & Verified</span>
+  </div>
+</footer>
+
+<script>
+// Create star rain
+function createStarRain() {
+  const starRain = document.getElementById('starRain');
+  
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    
+    const left = Math.random() * 100;
+    const delay = Math.random() * 10;
+    const duration = Math.random() * 3 + 2;
+    
+    star.style.left = `${left}%`;
+    star.style.animationDelay = `${delay}s`;
+    star.style.animationDuration = `${duration}s`;
+    
+    starRain.appendChild(star);
+  }
+}
+
+// Create twinkling background stars
+function createBackgroundStars() {
+  const starsBg = document.getElementById('starsBg');
+  
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.classList.add('bg-star');
+    
+    const size = Math.random() * 3 + 1;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+    const delay = Math.random() * 5;
+    const duration = Math.random() * 4 + 2;
+    
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.left = `${left}%`;
+    star.style.top = `${top}%`;
+    star.style.animationDelay = `${delay}s`;
+    star.style.animationDuration = `${duration}s`;
+    
+    starsBg.appendChild(star);
+  }
+}
+
+// Create light rays on button click
+function createLightRays(color) {
+  const lightRays = document.getElementById('lightRays');
+  lightRays.innerHTML = '';
+  
+  // Create 12 rays in a circle
+  for (let i = 0; i < 12; i++) {
+    const ray = document.createElement('div');
+    ray.classList.add('ray');
+    
+    const angle = (i * 30) * (Math.PI / 180);
+    const endX = Math.cos(angle) * 800;
+    const endY = Math.sin(angle) * 800;
+    
+    ray.style.background = `linear-gradient(to bottom, ${color}, transparent)`;
+    ray.style.transform = `translate(-50%, -50%) rotate(${i * 30}deg)`;
+    
+    // Animation
+    ray.animate([
+      { 
+        height: '0px', 
+        opacity: 0.8,
+        transform: `translate(-50%, -50%) rotate(${i * 30}deg) scaleY(0)`
+      },
+      { 
+        height: '800px', 
+        opacity: 0,
+        transform: `translate(-50%, -50%) rotate(${i * 30}deg) scaleY(1)`
+      }
+    ], {
+      duration: 800,
+      easing: 'ease-out'
+    });
+    
+    lightRays.appendChild(ray);
+  }
+  
+  // Show light rays
+  lightRays.style.opacity = '1';
+  
+  // Hide after animation
+  setTimeout(() => {
+    lightRays.style.opacity = '0';
+  }, 800);
+}
+
+// Button click effects
+const buttons = document.querySelectorAll('.cosmic-button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', function(e) {
+    // Get button color for light rays
+    const color = this.getAttribute('data-color') || '#00f3ff';
+    const buttonName = this.getAttribute('data-name');
+    
+    // Add clicked animation
+    this.classList.add('clicked');
+    
+    // Create light rays effect
+    createLightRays(color);
+    
+    // Create additional star burst on click
+    createStarBurst(e.clientX, e.clientY, color);
+    
+    // Remove animation class after completion
+    setTimeout(() => {
+      this.classList.remove('clicked');
+    }, 800);
+    
+    // Show notification
+    showNotification(`${buttonName} launched! 🚀`);
+    
+    // Open link after animation
+    setTimeout(() => {
+      window.open(this.href, '_blank');
+    }, 400);
+  });
+  
+  // Add hover effect
+  button.addEventListener('mouseenter', function() {
+    // Create mini star particles on hover
+    const rect = this.getBoundingClientRect();
+    createHoverStars(rect.left + rect.width/2, rect.top + rect.height/2);
+  });
+});
+
+// Create star burst on click
+function createStarBurst(x, y, color) {
+  const burstContainer = document.createElement('div');
+  burstContainer.style.cssText = `
+    position: fixed;
+    top: ${y}px;
+    left: ${x}px;
+    pointer-events: none;
+    z-index: 100;
+  `;
+  
+  document.body.appendChild(burstContainer);
+  
+  // Create 16 burst particles
+  for (let i = 0; i < 16; i++) {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: ${color};
+      border-radius: 50%;
+      box-shadow: 0 0 10px ${color}, 0 0 20px ${color};
+    `;
+    
+    const angle = (i * 22.5) * (Math.PI / 180);
+    const distance = 60;
+    
+    particle.animate([
+      { 
+        transform: 'translate(0, 0) scale(1)',
+        opacity: 1
+      },
+      { 
+        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`,
+        opacity: 0
+      }
+    ], {
+      duration: 600,
+      easing: 'ease-out'
+    });
+    
+    burstContainer.appendChild(particle);
+  }
+  
+  // Remove after animation
+  setTimeout(() => {
+    burstContainer.remove();
+  }, 600);
+}
+
+// Create hover stars
+function createHoverStars(x, y) {
+  const hoverStars = document.createElement('div');
+  hoverStars.style.cssText = `
+    position: fixed;
+    top: ${y}px;
+    left: ${x}px;
+    pointer-events: none;
+    z-index: 10;
+  `;
+  
+  document.body.appendChild(hoverStars);
+  
+  // Create 6 small stars
+  for (let i = 0; i < 6; i++) {
+    const star = document.createElement('div');
+    const angle = Math.random() * Math.PI * 2;
+    const distance = Math.random() * 30 + 10;
+    const size = Math.random() * 4 + 2;
+    
+    star.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 5px white;
+    `;
+    
+    star.animate([
+      { 
+        transform: 'translate(0, 0) scale(1)',
+        opacity: 1
+      },
+      { 
+        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`,
+        opacity: 0
+      }
+    ], {
+      duration: 400,
+      easing: 'ease-out'
+    });
+    
+    hoverStars.appendChild(star);
+  }
+  
+  // Remove after animation
+  setTimeout(() => {
+    hoverStars.remove();
+  }, 400);
+}
+
+// Show notification
+function showNotification(message) {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(10, 12, 28, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 15px 25px;
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(0, 243, 255, 0.2);
+    z-index: 100;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 300px;
+    width: 90%;
+  `;
+  
+  notification.textContent = message;
+  document.body.appendChild(notification);
+  
+  // Show notification
+  setTimeout(() => {
+    notification.style.opacity = '1';
+    notification.style.transform = 'translateX(-50%) translateY(0)';
+  }, 10);
+  
+  // Hide after 3 seconds
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateX(-50%) translateY(100px)';
+    
+    // Remove from DOM
+    setTimeout(() => {
+      notification.remove();
+    }, 500);
+  }, 3000);
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+  createStarRain();
+  createBackgroundStars();
+  
+  // Add floating effect to header
+  const header = document.querySelector('.cosmic-header');
+  let floatY = 0;
+  let floatDirection = 1;
+  
+  function floatHeader() {
+    floatY += 0.02 * floatDirection;
+    
+    if (floatY > 5) floatDirection = -1;
+    if (floatY < -5) floatDirection = 1;
+    
+    header.style.transform = `translateY(${floatY}px)`;
+    requestAnimationFrame(floatHeader);
+  }
+  
+  floatHeader();
+});
+
+// Add page load animation
+window.addEventListener('load', function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.8s ease';
+  
+  setTimeout(() => {
+    document.body.style.opacity = '1';
+  }, 100);
+  
+  // Welcome notification
+  setTimeout(() => {
+    showNotification('✨ Welcome to TheLevel8 WhatsApp Portal! ✨');
+  }, 1000);
+});
+</script>
+
 </body>
 </html>
